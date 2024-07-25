@@ -1,0 +1,39 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ultron/common-library": [
+        "libraries/common-library/src/index.ts"
+      ],
+      "@ultron/core-library": [
+        "libraries/core-library/src/index.ts"
+      ],
+      "@ultron/data-library": [
+        "libraries/data-library/src/index.ts"
+      ],
+      "@ultron/services-library": [
+        "libraries/services-library/src/index.ts"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
+}

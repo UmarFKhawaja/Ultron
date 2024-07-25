@@ -1,0 +1,25 @@
+{
+  "name": "monitor-app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/monitor-app/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "monitor-app:build",
+        "port": 9339
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "monitor-app:build:development"
+        },
+        "production": {
+          "buildTarget": "monitor-app:build:production"
+        }
+      }
+    }
+  }
+}

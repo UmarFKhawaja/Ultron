@@ -1,0 +1,25 @@
+{
+  "name": "server-app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/server-app/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "server-app:build",
+        "port": 9439
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "server-app:build:development"
+        },
+        "production": {
+          "buildTarget": "server-app:build:production"
+        }
+      }
+    }
+  }
+}
