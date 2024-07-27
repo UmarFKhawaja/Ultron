@@ -117,6 +117,7 @@ const files = [
       'local'
     ],
     lines: [
+      'AUTH_SESSION_SECRET={{SECRET}}',
       'AUTH_STRATEGY_JWT_SECRET={{SECRET}}',
       'AUTH_STRATEGY_JWT_EXPIRES_IN=1d',
       '',
@@ -163,7 +164,8 @@ const files = [
     values: {
       NODE_ENV: 'production',
       NODE_TLS_REJECT_UNAUTHORIZED: '1',
-      PORT: '2280',
+      PORT: '3280',
+      AUTH_SESSION_SECRET: '{{SECRET}}',
       AUTH_STRATEGY_JWT_SECRET: '{{SECRET}}',
       AUTH_STRATEGY_JWT_EXPIRES_IN: '1d',
       AUTH_STRATEGY_MAGIC_LOGIN_SECRET: '{{SECRET}}',

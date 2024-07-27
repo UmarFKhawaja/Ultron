@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { createContainer, MessageService, TaskService } from '@ultron/core-library';
+import { populateContainer, MessageService, TaskService } from '@ultron/core-library';
 import { defineRedisModule, REDIS_CONSTANTS } from '@ultron/data-library';
 import { defineMJMLModule, defineNodemailerModule } from '@ultron/services-library';
 import { Container } from 'inversify';
@@ -7,7 +7,7 @@ import { APP_CONSTANTS } from './constants';
 import { defineAppModule } from './modules';
 
 process.nextTick(async (): Promise<void> => {
-  const container: Container = createContainer(
+  const container: Container = populateContainer(
     new Container(),
     defineRedisModule,
     defineMJMLModule,
@@ -20,5 +20,5 @@ process.nextTick(async (): Promise<void> => {
 
   await messageService.watchForMessages(taskService.handleTask.bind(taskService));
 
-  console.log(`🚀 MonitorApp is running`);
+  console.log(`🚀 Monitor application is running`);
 });

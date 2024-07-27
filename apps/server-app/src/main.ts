@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { createContainer } from '@ultron/core-library';
+import { populateContainer } from '@ultron/core-library';
 import { defineCerbosModule, defineMySQLModule, defineRedisModule } from '@ultron/data-library';
 import express, { Express } from 'express';
 import { Container } from 'inversify';
@@ -9,7 +9,7 @@ import { defineAppModule, setupAuthMiddleware, setupAuthRouter } from './modules
 import { setupAppRouter } from './routes';
 
 process.nextTick(async (): Promise<void> => {
-  const container: Container = createContainer(
+  const container: Container = populateContainer(
     new Container(),
     defineCerbosModule,
     defineMySQLModule,
@@ -24,6 +24,6 @@ process.nextTick(async (): Promise<void> => {
   app.use(`/${prefix}`, setupAppRouter(app, container, setupAuthRouter));
 
   app.listen(APP_CONSTANTS.Settings.port, APP_CONSTANTS.Settings.host, (): void => {
-    console.log(`🚀 ServerApp is listening at http://${APP_CONSTANTS.Settings.host}:${APP_CONSTANTS.Settings.port}/${prefix}`);
+    console.log(`🚀 Server application is listening at http://${APP_CONSTANTS.Settings.host}:${APP_CONSTANTS.Settings.port}/${prefix}`);
   });
 });
