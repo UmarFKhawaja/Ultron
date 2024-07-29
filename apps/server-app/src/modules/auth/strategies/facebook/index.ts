@@ -1,21 +1,17 @@
-import {
-  DefineModuleFunction,
-  ProfileService,
-  SetupMiddlewareFunction,
-  SetupRouterFunction
-} from '@ultron/core-library';
+import { DefineModuleFunction, SetupMiddlewareFunction, SetupRouterFunction } from '@ultron/core-library';
 import { Express, Router } from 'express';
 import { Container } from 'inversify';
 import passport from 'passport';
 import { Strategy, StrategyOptions } from 'passport-facebook';
 import { AUTH_CONSTANTS } from '../../constants';
+import { ProfileService } from '../../contracts';
 import { authenticateFacebook, authorizeFacebook, authenticateJWT } from '../../methods';
 import { acceptFacebook, connectFacebook, disconnectFacebook, loginWithFacebook, verifyUser } from './methods';
 import { AuthFacebookProfileService } from './services';
 
 export const defineFacebookModule: DefineModuleFunction = (container: Container): Container => {
   container.bind<ProfileService>(AUTH_CONSTANTS.Symbols.Services.ProfileService).to(AuthFacebookProfileService)
-    .whenTargetNamed(AUTH_CONSTANTS.Names.Services.Facebook);
+    .whenTargetNamed(AUTH_CONSTANTS.Names.Services.FacebookProfileService);
 
   return container;
 };

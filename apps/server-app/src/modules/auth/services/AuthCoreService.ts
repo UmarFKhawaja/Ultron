@@ -1,7 +1,9 @@
+import { EmailAddressChanged, Information } from '@ultron/common-library';
 import {
   AccessAction,
   AccessService,
-  MailService, ProviderType,
+  MailService,
+  ProviderType,
   User,
   VerificationRequest,
   VerificationRequestPurpose
@@ -10,23 +12,21 @@ import { CERBOS_CONSTANTS, REDIS_CONSTANTS } from '@ultron/data-library';
 import { compareSync } from 'bcryptjs';
 import { inject, injectable } from 'inversify';
 import { AUTH_CONSTANTS } from '../constants';
-import { AuthTokenService } from './AuthTokenService';
-import { AuthURLService } from './AuthURLService';
+import { CoreService, TokenService, URLService } from '../contracts';
 import { AuthUserService } from './AuthUserService';
 import { AuthVerificationRequestService } from './AuthVerificationRequestService';
-import { EmailAddressChanged, Information } from '@ultron/common-library';
 
 @injectable()
-export class AuthCoreService {
+export class AuthCoreService implements CoreService {
   constructor(
     @inject(CERBOS_CONSTANTS.Symbols.Services.AccessService)
     private readonly accessService: AccessService,
     @inject(REDIS_CONSTANTS.Symbols.Services.MailService)
     private readonly mailService: MailService,
     @inject(AUTH_CONSTANTS.Symbols.Services.TokenService)
-    private readonly tokenService: AuthTokenService,
+    private readonly tokenService: TokenService,
     @inject(AUTH_CONSTANTS.Symbols.Services.URLService)
-    private readonly urlService: AuthURLService,
+    private readonly urlService: URLService,
     @inject(AUTH_CONSTANTS.Symbols.Services.UserService)
     private readonly userService: AuthUserService,
     @inject(AUTH_CONSTANTS.Symbols.Services.VerificationRequestService)
@@ -488,7 +488,7 @@ export class AuthCoreService {
     }
   }
 
-  private createEmailAddressChanged(verificationRequest: VerificationRequest | null): EmailAddressChanged | null {
+  createEmailAddressChanged(verificationRequest: VerificationRequest | null): EmailAddressChanged | null {
     const emailAddressChanged: EmailAddressChanged | null = verificationRequest
       ? {
         code: verificationRequest.code,

@@ -1,16 +1,16 @@
-import { ProfileService, ProviderType, User } from '@ultron/core-library';
+import { ProviderType, User } from '@ultron/core-library';
 import { Container } from 'inversify';
 import { Profile, VerifyFunction } from 'passport-facebook';
 import { AUTH_CONSTANTS } from '../../../constants';
-import { AuthCoreService } from '../../../services';
+import { CoreService, ProfileService } from '../../../contracts';
 
 type DoneFunction = (error: any, user?: any, info?: any) => void;
 
 export function verifyUser(container: Container): VerifyFunction {
-  const coreService: AuthCoreService = container.get<AuthCoreService>(AUTH_CONSTANTS.Symbols.Services.CoreService);
+  const coreService: CoreService = container.get<CoreService>(AUTH_CONSTANTS.Symbols.Services.CoreService);
   const profileService: ProfileService = container.getNamed<ProfileService>(
     AUTH_CONSTANTS.Symbols.Services.ProfileService,
-    AUTH_CONSTANTS.Names.Services.Facebook
+    AUTH_CONSTANTS.Names.Services.FacebookProfileService
   );
 
   return async (accessToken: string, refreshToken: string, profile: Profile, done: DoneFunction): Promise<void> => {

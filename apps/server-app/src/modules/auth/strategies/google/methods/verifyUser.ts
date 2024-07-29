@@ -1,15 +1,15 @@
-import { ProfileService, ProviderType, User } from '@ultron/core-library';
+import { ProviderType, User } from '@ultron/core-library';
 import { Container } from 'inversify';
 import { Profile, VerifyCallback as DoneFunction } from 'passport-google-oauth20';
 import { AUTH_CONSTANTS } from '../../../constants';
-import { AuthCoreService } from '../../../services';
+import { CoreService, ProfileService } from '../../../contracts';
 import { VerifyFunction } from '../types';
 
 export function verifyUser(container: Container): VerifyFunction {
-  const coreService: AuthCoreService = container.get<AuthCoreService>(AUTH_CONSTANTS.Symbols.Services.CoreService);
+  const coreService: CoreService = container.get<CoreService>(AUTH_CONSTANTS.Symbols.Services.CoreService);
   const profileService: ProfileService = container.getNamed<ProfileService>(
     AUTH_CONSTANTS.Symbols.Services.ProfileService,
-    AUTH_CONSTANTS.Names.Services.Google
+    AUTH_CONSTANTS.Names.Services.GoogleProfileService
   );
 
   return async (accessToken: string, refreshToken: string, profile: Profile, done: DoneFunction): Promise<void> => {

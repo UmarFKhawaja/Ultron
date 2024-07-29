@@ -11,6 +11,7 @@ import session from 'express-session';
 import { Container } from 'inversify';
 import passport from 'passport';
 import { AUTH_CONSTANTS } from './constants';
+import { CoreService, JWTService, TokenService, URLService } from './contracts';
 import {
   activateAccount,
   authenticateJWT,
@@ -50,10 +51,10 @@ export const defineAuthModule: DefineModuleFunction = (container: Container): Co
     defineGoogleModule
   );
 
-  container.bind<AuthCoreService>(AUTH_CONSTANTS.Symbols.Services.CoreService).to(AuthCoreService).inRequestScope();
-  container.bind<AuthJWTService>(AUTH_CONSTANTS.Symbols.Services.JWTService).to(AuthJWTService).inRequestScope();
-  container.bind<AuthTokenService>(AUTH_CONSTANTS.Symbols.Services.TokenService).to(AuthTokenService).inRequestScope();
-  container.bind<AuthURLService>(AUTH_CONSTANTS.Symbols.Services.URLService).to(AuthURLService).inRequestScope();
+  container.bind<CoreService>(AUTH_CONSTANTS.Symbols.Services.CoreService).to(AuthCoreService).inRequestScope();
+  container.bind<JWTService>(AUTH_CONSTANTS.Symbols.Services.JWTService).to(AuthJWTService).inRequestScope();
+  container.bind<TokenService>(AUTH_CONSTANTS.Symbols.Services.TokenService).to(AuthTokenService).inRequestScope();
+  container.bind<URLService>(AUTH_CONSTANTS.Symbols.Services.URLService).to(AuthURLService).inRequestScope();
   container.bind<AuthUserService>(AUTH_CONSTANTS.Symbols.Services.UserService).to(AuthUserService).inRequestScope();
   container.bind<AuthVerificationRequestService>(AUTH_CONSTANTS.Symbols.Services.VerificationRequestService).to(AuthVerificationRequestService).inRequestScope();
 

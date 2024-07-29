@@ -7,13 +7,15 @@ export const AUTH_CONSTANTS = {
       URLService: Symbol.for('URLService'),
       UserService: Symbol.for('UserService'),
       VerificationRequestService: Symbol.for('VerificationRequestService'),
-      ProfileService: Symbol.for('ProfileService')
+      ProfileService: Symbol.for('ProfileService'),
+      MagicLoginStrategyService: Symbol.for('MagicLoginStrategyService')
     }
   },
   Names: {
     Services: {
-      Facebook: 'Facebook',
-      Google: 'Google'
+      FacebookProfileService: 'FacebookProfileService',
+      GoogleProfileService: 'GoogleProfileService',
+      MagicLoginStrategyService: 'MagicLoginStrategyService'
     },
   },
   Settings: {

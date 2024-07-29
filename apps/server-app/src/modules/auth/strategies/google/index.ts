@@ -1,21 +1,17 @@
-import {
-  DefineModuleFunction,
-  ProfileService,
-  SetupMiddlewareFunction,
-  SetupRouterFunction
-} from '@ultron/core-library';
+import { DefineModuleFunction, SetupMiddlewareFunction, SetupRouterFunction } from '@ultron/core-library';
 import { Express, Router } from 'express';
 import { Container } from 'inversify';
 import passport from 'passport';
-import { StrategyOptions, Strategy } from 'passport-google-oauth20';
+import { Strategy, StrategyOptions } from 'passport-google-oauth20';
 import { AUTH_CONSTANTS } from '../../constants';
+import { ProfileService } from '../../contracts';
 import { authenticateGoogle, authorizeGoogle, authenticateJWT } from '../../methods';
 import { acceptGoogle, connectGoogle, disconnectGoogle, loginWithGoogle, verifyUser } from './methods';
 import { AuthGoogleProfileService } from './services';
 
 export const defineGoogleModule: DefineModuleFunction = (container: Container): Container => {
   container.bind<ProfileService>(AUTH_CONSTANTS.Symbols.Services.ProfileService).to(AuthGoogleProfileService)
-    .whenTargetNamed(AUTH_CONSTANTS.Names.Services.Google);
+    .whenTargetNamed(AUTH_CONSTANTS.Names.Services.GoogleProfileService);
 
   return container;
 };

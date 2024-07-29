@@ -1,14 +1,15 @@
 import { FAILURE, Result, Session, SUCCESS, Token } from '@ultron/common-library';
-import { Account, JWTService, ProviderType, SessionService, User } from '@ultron/core-library';
+import { Account, ProviderType, SessionService, User } from '@ultron/core-library';
 import { REDIS_CONSTANTS } from '@ultron/data-library';
 import dayjs from 'dayjs';
 import { inject, injectable } from 'inversify';
 import { decode } from 'jsonwebtoken';
 import { JwtPayload } from 'jwt-decode';
 import { v4 as generateUUID } from 'uuid';
+import { JWTService, TokenService } from '../contracts';
 
 @injectable()
-export class AuthTokenService {
+export class AuthTokenService implements TokenService {
   constructor(
     @inject(Symbol.for('JWTService'))
     private jwtService: JWTService,

@@ -1,8 +1,6 @@
-import { NextFunction, Request, Response } from 'express';
 import { Container } from 'inversify';
+import passport from 'passport';
 
 export function authenticateMagicLogin(container: Container) {
-  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-    next();
-  };
+  return passport.authenticate('magic-login');
 }

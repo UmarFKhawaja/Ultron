@@ -1,6 +1,6 @@
 import { Session } from '@ultron/common-library';
-import { JWTService } from '@ultron/core-library';
 import { injectable } from 'inversify';
+import { JWTService } from '../contracts';
 
 @injectable()
 export class AuthJWTService implements JWTService {

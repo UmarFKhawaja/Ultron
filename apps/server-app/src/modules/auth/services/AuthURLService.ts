@@ -1,9 +1,10 @@
 import { VerificationRequest } from '@ultron/core-library';
 import { injectable } from 'inversify';
 import { AUTH_CONSTANTS } from '../constants';
+import { URLService } from '../contracts';
 
 @injectable()
-export class AuthURLService {
+export class AuthURLService implements URLService {
   formatRegisterVerificationURL(verificationRequest: VerificationRequest): string {
     const url: URL = new URL(AUTH_CONSTANTS.Actions.ActivateAccount.path, AUTH_CONSTANTS.Actions.baseURL);
 

@@ -1,5 +1,6 @@
-import { Profile, ProfileService } from '@ultron/core-library';
+import { Profile } from '@ultron/core-library';
 import { injectable } from 'inversify';
+import { ProfileService } from '../../../contracts';
 
 interface Email {
   value: string;
