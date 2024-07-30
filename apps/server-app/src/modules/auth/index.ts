@@ -11,7 +11,7 @@ import session from 'express-session';
 import { Container } from 'inversify';
 import passport from 'passport';
 import { AUTH_CONSTANTS } from './constants';
-import { CoreService, JWTService, TokenService, URLService } from './contracts';
+import { CoreManager, JWTManager, TokenManager, URLFormatter } from './contracts';
 import {
   activateAccount,
   authenticateJWT,
@@ -28,12 +28,12 @@ import {
   verifySession
 } from './methods';
 import {
-  AuthCoreService,
-  AuthJWTService,
-  AuthTokenService,
-  AuthURLService,
-  AuthUserService,
-  AuthVerificationRequestService
+  AuthCoreManager,
+  AuthJWTManager,
+  AuthTokenManager,
+  AuthURLFormatter,
+  AuthUserManager,
+  AuthVerificationRequestManager
 } from './services';
 import { defineFacebookModule, setupFacebookMiddleware, setupFacebookRouter } from './strategies/facebook';
 import { defineGoogleModule, setupGoogleMiddleware, setupGoogleRouter } from './strategies/google';
@@ -51,12 +51,12 @@ export const defineAuthModule: DefineModuleFunction = (container: Container): Co
     defineGoogleModule
   );
 
-  container.bind<CoreService>(AUTH_CONSTANTS.Symbols.Services.CoreService).to(AuthCoreService).inRequestScope();
-  container.bind<JWTService>(AUTH_CONSTANTS.Symbols.Services.JWTService).to(AuthJWTService).inRequestScope();
-  container.bind<TokenService>(AUTH_CONSTANTS.Symbols.Services.TokenService).to(AuthTokenService).inRequestScope();
-  container.bind<URLService>(AUTH_CONSTANTS.Symbols.Services.URLService).to(AuthURLService).inRequestScope();
-  container.bind<AuthUserService>(AUTH_CONSTANTS.Symbols.Services.UserService).to(AuthUserService).inRequestScope();
-  container.bind<AuthVerificationRequestService>(AUTH_CONSTANTS.Symbols.Services.VerificationRequestService).to(AuthVerificationRequestService).inRequestScope();
+  container.bind<CoreManager>(AUTH_CONSTANTS.Symbols.Services.CoreManager).to(AuthCoreManager).inRequestScope();
+  container.bind<JWTManager>(AUTH_CONSTANTS.Symbols.Services.JWTManager).to(AuthJWTManager).inRequestScope();
+  container.bind<TokenManager>(AUTH_CONSTANTS.Symbols.Services.TokenManager).to(AuthTokenManager).inRequestScope();
+  container.bind<URLFormatter>(AUTH_CONSTANTS.Symbols.Services.URLFormatter).to(AuthURLFormatter).inRequestScope();
+  container.bind<AuthUserManager>(AUTH_CONSTANTS.Symbols.Services.UserManager).to(AuthUserManager).inRequestScope();
+  container.bind<AuthVerificationRequestManager>(AUTH_CONSTANTS.Symbols.Services.VerificationRequestManager).to(AuthVerificationRequestManager).inRequestScope();
 
   return container;
 };

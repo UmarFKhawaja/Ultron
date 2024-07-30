@@ -1,8 +1,8 @@
 export const APP_CONSTANTS = {
   Symbols: {
     Services: {
-      MailService: Symbol.for('MailService'),
-      TaskService: Symbol.for('TaskService')
+      MailSender: Symbol.for('MailSender'),
+      TaskHandler: Symbol.for('TaskHandler')
     }
   },
   Settings: {

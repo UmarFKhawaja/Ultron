@@ -1,11 +1,11 @@
-import { DefineModuleFunction, MailService, TaskService } from '@ultron/core-library';
+import { DefineModuleFunction, MailSender, TaskHandler } from '@ultron/core-library';
 import { Container } from 'inversify';
 import { APP_CONSTANTS } from './constants';
-import { SimpleMailService, SimpleTaskService } from './services';
+import { SimpleMailSender, SimpleTaskHandler } from './services';
 
 export const defineAppModule: DefineModuleFunction = (container: Container): Container => {
-  container.bind<MailService>(APP_CONSTANTS.Symbols.Services.MailService).to(SimpleMailService).inRequestScope();
-  container.bind<TaskService>(APP_CONSTANTS.Symbols.Services.TaskService).to(SimpleTaskService).inRequestScope();
+  container.bind<MailSender>(APP_CONSTANTS.Symbols.Services.MailSender).to(SimpleMailSender).inRequestScope();
+  container.bind<TaskHandler>(APP_CONSTANTS.Symbols.Services.TaskHandler).to(SimpleTaskHandler).inRequestScope();
 
   return container;
 };

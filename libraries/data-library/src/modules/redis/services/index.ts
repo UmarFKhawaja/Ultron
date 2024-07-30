@@ -1,3 +1,3 @@
-export * from './RedisMailService';
-export * from './RedisMessageService';
-export * from './RedisSessionService';
+export * from './RedisMailSender';
+export * from './RedisMessageWatcher';
+export * from './RedisSessionManager';

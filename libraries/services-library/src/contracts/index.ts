@@ -1,2 +1,2 @@
-export * from './MailFormatterService';
-export * from './MailSenderService';
+export * from './MailFormatter';
+export * from './MailTransporter';

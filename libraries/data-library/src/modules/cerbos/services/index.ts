@@ -1,1 +1,1 @@
-export * from './CerbosAccessService';
+export * from './CerbosAccessChecker';

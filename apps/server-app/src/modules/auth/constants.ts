@@ -1,21 +1,21 @@
 export const AUTH_CONSTANTS = {
   Symbols: {
     Services: {
-      CoreService: Symbol.for('CoreService'),
-      JWTService: Symbol.for('JWTService'),
-      TokenService: Symbol.for('TokenService'),
-      URLService: Symbol.for('URLService'),
-      UserService: Symbol.for('UserService'),
-      VerificationRequestService: Symbol.for('VerificationRequestService'),
-      ProfileService: Symbol.for('ProfileService'),
-      MagicLoginStrategyService: Symbol.for('MagicLoginStrategyService')
+      CoreManager: Symbol.for('CoreManager'),
+      JWTManager: Symbol.for('JWTManager'),
+      ProfileExtractor: Symbol.for('ProfileExtractor'),
+      TokenManager: Symbol.for('TokenManager'),
+      URLFormatter: Symbol.for('URLFormatter'),
+      UserManager: Symbol.for('UserManager'),
+      VerificationRequestManager: Symbol.for('VerificationRequestManager'),
+      MagicLoginStrategyProvider: Symbol.for('MagicLoginStrategyProvider')
     }
   },
   Names: {
     Services: {
-      FacebookProfileService: 'FacebookProfileService',
-      GoogleProfileService: 'GoogleProfileService',
-      MagicLoginStrategyService: 'MagicLoginStrategyService'
+      FacebookProfileExtractor: 'FacebookProfileExtractor',
+      GoogleProfileExtractor: 'GoogleProfileExtractor',
+      MagicLoginStrategyProvider: 'MagicLoginStrategyProvider'
     },
   },
   Settings: {

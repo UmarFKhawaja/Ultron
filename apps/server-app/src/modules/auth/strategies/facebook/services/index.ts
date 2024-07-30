@@ -1,1 +1,1 @@
-export * from './AuthFacebookProfileService';
+export * from './AuthFacebookProfileExtractor';

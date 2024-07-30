@@ -1,16 +1,16 @@
 import { Request, Response } from 'express';
 import { Container } from 'inversify';
 import { AUTH_CONSTANTS } from '../../../constants';
-import { AuthMagicLoginStrategyService } from '../services';
+import { AuthMagicLoginStrategyProvider } from '../services';
 
 export function loginWithMagicLogin(container: Container) {
-  const strategyService: AuthMagicLoginStrategyService = container
-    .getNamed<AuthMagicLoginStrategyService>(
-      AUTH_CONSTANTS.Symbols.Services.MagicLoginStrategyService,
-      AUTH_CONSTANTS.Names.Services.MagicLoginStrategyService
+  const strategyProvider: AuthMagicLoginStrategyProvider = container
+    .getNamed<AuthMagicLoginStrategyProvider>(
+      AUTH_CONSTANTS.Symbols.Services.MagicLoginStrategyProvider,
+      AUTH_CONSTANTS.Names.Services.MagicLoginStrategyProvider
     );
 
   return async (req: Request, res: Response): Promise<void> => {
-    strategyService.send(req, res);
+    strategyProvider.send(req, res);
   };
 }

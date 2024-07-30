@@ -4,14 +4,14 @@ import { Container } from 'inversify';
 import passport from 'passport';
 import { Strategy, StrategyOptions } from 'passport-google-oauth20';
 import { AUTH_CONSTANTS } from '../../constants';
-import { ProfileService } from '../../contracts';
+import { ProfileExtractor } from '../../contracts';
 import { authenticateGoogle, authorizeGoogle, authenticateJWT } from '../../methods';
 import { acceptGoogle, connectGoogle, disconnectGoogle, loginWithGoogle, verifyUser } from './methods';
-import { AuthGoogleProfileService } from './services';
+import { AuthGoogleProfileExtractor } from './services';
 
 export const defineGoogleModule: DefineModuleFunction = (container: Container): Container => {
-  container.bind<ProfileService>(AUTH_CONSTANTS.Symbols.Services.ProfileService).to(AuthGoogleProfileService)
-    .whenTargetNamed(AUTH_CONSTANTS.Names.Services.GoogleProfileService);
+  container.bind<ProfileExtractor>(AUTH_CONSTANTS.Symbols.Services.ProfileExtractor).to(AuthGoogleProfileExtractor)
+    .whenTargetNamed(AUTH_CONSTANTS.Names.Services.GoogleProfileExtractor);
 
   return container;
 };

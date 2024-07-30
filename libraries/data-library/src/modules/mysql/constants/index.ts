@@ -5,9 +5,9 @@ export const MYSQL_CONSTANTS = {
       RepositoriesProvider: 'MYSQL_REPOSITORIES_PROVIDER'
     },
     Services: {
-      UserService: 'MYSQL_USER_SERVICE',
-      AccountService: 'MYSQL_ACCOUNT_SERVICE',
-      VerificationRequestService: 'MYSQL_VERIFICATION_REQUEST_SERVICE',
+      UserHelper: 'MYSQL_USER_HELPER',
+      AccountHelper: 'MYSQL_ACCOUNT_HELPER',
+      VerificationRequestHelper: 'MYSQL_VERIFICATION_REQUEST_HELPER',
     }
   },
   Settings: {

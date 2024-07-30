@@ -1,1 +1,1 @@
-export * from './AuthMagicLoginStrategyService';
+export * from './AuthMagicLoginStrategyProvider';

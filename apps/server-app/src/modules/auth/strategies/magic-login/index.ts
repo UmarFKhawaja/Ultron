@@ -7,7 +7,7 @@ import Strategy from 'passport-magic-login';
 import { AUTH_CONSTANTS } from '../../constants';
 import { authenticateMagicLogin } from '../../methods';
 import { acceptMagicLogin, loginWithMagicLogin, sendMagicLink, verifyUser } from './methods';
-import { AuthMagicLoginStrategyService } from './services';
+import { AuthMagicLoginStrategyProvider } from './services';
 import { SendMagicLinkFunction, VerifyFunction } from './types';
 
 type Options = {
@@ -19,8 +19,8 @@ type Options = {
 };
 
 export const defineMagicLoginModule: DefineModuleFunction = (container: Container): Container => {
-  container.bind<AuthMagicLoginStrategyService>(AUTH_CONSTANTS.Symbols.Services.MagicLoginStrategyService).to(AuthMagicLoginStrategyService)
-    .inRequestScope().whenTargetNamed(AUTH_CONSTANTS.Names.Services.MagicLoginStrategyService);
+  container.bind<AuthMagicLoginStrategyProvider>(AUTH_CONSTANTS.Symbols.Services.MagicLoginStrategyProvider).to(AuthMagicLoginStrategyProvider)
+    .inRequestScope().whenTargetNamed(AUTH_CONSTANTS.Names.Services.MagicLoginStrategyProvider);
 
   return container;
 };

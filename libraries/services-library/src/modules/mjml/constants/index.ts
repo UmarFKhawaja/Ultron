@@ -9,7 +9,7 @@ import {
 export const MJML_CONSTANTS = {
   Symbols: {
     Services: {
-      MailFormatterService: 'MJML_MAIL_FORMATTER_SERVICE'
+      MailFormatter: 'MJML_MAIL_FORMATTER'
     }
   },
   Settings: {

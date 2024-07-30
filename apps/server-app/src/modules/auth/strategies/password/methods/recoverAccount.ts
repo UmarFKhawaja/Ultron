@@ -2,10 +2,10 @@ import { FAILURE, SUCCESS } from '@ultron/common-library';
 import { Request, Response } from 'express';
 import { Container } from 'inversify';
 import { AUTH_CONSTANTS } from '../../../constants';
-import { CoreService } from '../../../contracts';
+import { CoreManager } from '../../../contracts';
 
 export function recoverAccount(container: Container) {
-  const coreService: CoreService = container.get<CoreService>(AUTH_CONSTANTS.Symbols.Services.CoreService);
+  const coreManager: CoreManager = container.get<CoreManager>(AUTH_CONSTANTS.Symbols.Services.CoreManager);
 
   return async (req: Request, res: Response): Promise<void> => {
     try {
@@ -15,7 +15,7 @@ export function recoverAccount(container: Container) {
         username: string;
       } = req.body;
 
-      await coreService.recoverAccount(username);
+      await coreManager.recoverAccount(username);
 
       res.status(200).send(SUCCESS<void>(void 0));
     } catch (error: unknown) {

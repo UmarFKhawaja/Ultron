@@ -4,14 +4,14 @@ import { Container } from 'inversify';
 import passport from 'passport';
 import { Strategy, StrategyOptions } from 'passport-facebook';
 import { AUTH_CONSTANTS } from '../../constants';
-import { ProfileService } from '../../contracts';
+import { ProfileExtractor } from '../../contracts';
 import { authenticateFacebook, authorizeFacebook, authenticateJWT } from '../../methods';
 import { acceptFacebook, connectFacebook, disconnectFacebook, loginWithFacebook, verifyUser } from './methods';
-import { AuthFacebookProfileService } from './services';
+import { AuthFacebookProfileExtractor } from './services';
 
 export const defineFacebookModule: DefineModuleFunction = (container: Container): Container => {
-  container.bind<ProfileService>(AUTH_CONSTANTS.Symbols.Services.ProfileService).to(AuthFacebookProfileService)
-    .whenTargetNamed(AUTH_CONSTANTS.Names.Services.FacebookProfileService);
+  container.bind<ProfileExtractor>(AUTH_CONSTANTS.Symbols.Services.ProfileExtractor).to(AuthFacebookProfileExtractor)
+    .whenTargetNamed(AUTH_CONSTANTS.Names.Services.FacebookProfileExtractor);
 
   return container;
 };

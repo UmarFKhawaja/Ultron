@@ -2,10 +2,10 @@ import { FAILURE, SUCCESS } from '@ultron/common-library';
 import { Request, Response } from 'express';
 import { Container } from 'inversify';
 import { AUTH_CONSTANTS } from '../constants';
-import { CoreService } from '../contracts';
+import { CoreManager } from '../contracts';
 
 export function register(container: Container) {
-  const coreService: CoreService = container.get<CoreService>(AUTH_CONSTANTS.Symbols.Services.CoreService);
+  const coreManager: CoreManager = container.get<CoreManager>(AUTH_CONSTANTS.Symbols.Services.CoreManager);
 
   return async (req: Request, res: Response): Promise<void> => {
     try {
@@ -21,7 +21,7 @@ export function register(container: Container) {
         password: string
       } = req.body;
 
-      await coreService.register(displayName, userName, emailAddress, password);
+      await coreManager.register(displayName, userName, emailAddress, password);
 
       res.status(200).send(SUCCESS<void>(void 0));
     } catch (error: unknown) {

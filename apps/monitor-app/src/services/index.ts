@@ -1,2 +1,2 @@
-export * from './SimpleMailService';
-export * from './SimpleTaskService';
+export * from './SimpleMailSender';
+export * from './SimpleTaskHandler';

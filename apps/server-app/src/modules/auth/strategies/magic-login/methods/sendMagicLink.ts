@@ -1,12 +1,12 @@
 import { Container } from 'inversify';
 import { AUTH_CONSTANTS } from '../../../constants';
-import { CoreService } from '../../../contracts';
+import { CoreManager } from '../../../contracts';
 import { SendMagicLinkFunction } from '../types';
 
 export function sendMagicLink(container: Container): SendMagicLinkFunction {
-  const coreService: CoreService = container.get<CoreService>(AUTH_CONSTANTS.Symbols.Services.CoreService);
+  const coreManager: CoreManager = container.get<CoreManager>(AUTH_CONSTANTS.Symbols.Services.CoreManager);
 
   return async (username: string, confirmationURL: string): Promise<void> => {
-    await coreService.sendMagicLink(username, confirmationURL);
+    await coreManager.sendMagicLink(username, confirmationURL);
   };
 }

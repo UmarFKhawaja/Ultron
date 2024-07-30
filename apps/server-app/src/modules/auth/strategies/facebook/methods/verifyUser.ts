@@ -2,15 +2,15 @@ import { ProviderType, User } from '@ultron/core-library';
 import { Container } from 'inversify';
 import { Profile, VerifyFunction } from 'passport-facebook';
 import { AUTH_CONSTANTS } from '../../../constants';
-import { CoreService, ProfileService } from '../../../contracts';
+import { CoreManager, ProfileExtractor } from '../../../contracts';
 
 type DoneFunction = (error: any, user?: any, info?: any) => void;
 
 export function verifyUser(container: Container): VerifyFunction {
-  const coreService: CoreService = container.get<CoreService>(AUTH_CONSTANTS.Symbols.Services.CoreService);
-  const profileService: ProfileService = container.getNamed<ProfileService>(
-    AUTH_CONSTANTS.Symbols.Services.ProfileService,
-    AUTH_CONSTANTS.Names.Services.FacebookProfileService
+  const coreManager: CoreManager = container.get<CoreManager>(AUTH_CONSTANTS.Symbols.Services.CoreManager);
+  const profileExtractor: ProfileExtractor = container.getNamed<ProfileExtractor>(
+    AUTH_CONSTANTS.Symbols.Services.ProfileExtractor,
+    AUTH_CONSTANTS.Names.Services.FacebookProfileExtractor
   );
 
   return async (accessToken: string, refreshToken: string, profile: Profile, done: DoneFunction): Promise<void> => {
@@ -19,9 +19,9 @@ export function verifyUser(container: Container): VerifyFunction {
       displayName,
       userName,
       emailAddress
-    } = await profileService.extractProfile(profile);
+    } = await profileExtractor.extractProfile(profile);
 
-    const user: User | null = await coreService.ensureUserWithProvider(displayName, userName, emailAddress, ProviderType.FACEBOOK, id);
+    const user: User | null = await coreManager.ensureUserWithProvider(displayName, userName, emailAddress, ProviderType.FACEBOOK, id);
 
     if (!user) {
       done(new Error('a user linked to the Facebook ID could not be found'));

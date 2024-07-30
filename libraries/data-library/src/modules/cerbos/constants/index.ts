@@ -5,7 +5,7 @@ export const CERBOS_CONSTANTS = {
       HTTPConnectionProvider: 'CERBOS_HTTP_CONNECTION_PROVIDER'
     },
     Services: {
-      AccessService: 'CERBOS_ACCESS_SERVICE'
+      AccessChecker: 'CERBOS_ACCESS_CHECKER'
     }
   },
   Settings: {

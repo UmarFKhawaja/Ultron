@@ -1,1 +1,1 @@
-export * from './AuthGoogleProfileService';
+export * from './AuthGoogleProfileExtractor';

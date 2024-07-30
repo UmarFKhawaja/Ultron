@@ -1,1 +1,1 @@
-export * from './NodemailerMailSenderService';
+export * from './NodemailerMailTransporter';

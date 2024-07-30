@@ -11,7 +11,7 @@ export function acceptMagicLogin(container: Container) {
 
       const user: User | null = req.user as User;
 
-      res.status(200).send(await this.tokenService.regenerateToken(session, user));
+      res.status(200).send(await this.tokenManager.regenerateToken(session, user));
     } catch (error: unknown) {
       res.status(500).send(FAILURE<Token>(error as Error));
     }

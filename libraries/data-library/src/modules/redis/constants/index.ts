@@ -4,9 +4,9 @@ export const REDIS_CONSTANTS = {
       ConnectionProvider: 'REDIS_CONNECTION_PROVIDER'
     },
     Services: {
-      MailService: 'REDIS_MAIL_SERVICE',
-      MessageService: 'REDIS_MESSAGE_SERVICE',
-      SessionService: 'REDIS_SESSION_SERVICE'
+      MailSender: 'REDIS_MAIL_SENDER',
+      MessageWatcher: 'REDIS_MESSAGE_WATCHER',
+      SessionManager: 'REDIS_SESSION_MANAGER'
     }
   },
   Settings: {

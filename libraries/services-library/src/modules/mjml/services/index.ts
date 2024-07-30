@@ -1,1 +1,1 @@
-export * from './MJMLMailFormatterService';
+export * from './MJMLMailFormatter';

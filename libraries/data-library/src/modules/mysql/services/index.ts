@@ -1,3 +1,3 @@
-export * from './MySQLAccountService';
-export * from './MySQLUserService';
-export * from './MySQLVerificationRequestService';
+export * from './MySQLAccountHelper';
+export * from './MySQLUserHelper';
+export * from './MySQLVerificationRequestHelper';

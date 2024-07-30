@@ -11,9 +11,9 @@ export function disconnectGoogle(container: Container) {
 
       let user: User = req.user as User;
 
-      user = await this.coreService.ensureUserNotWithProvider(user, ProviderType.GOOGLE);
+      user = await this.coreManager.ensureUserNotWithProvider(user, ProviderType.GOOGLE);
 
-      res.status(200).send(await this.tokenService.regenerateToken(session, user));
+      res.status(200).send(await this.tokenManager.regenerateToken(session, user));
     } catch (error: unknown) {
       res.status(500).send(FAILURE<Token>(error as Error));
     }

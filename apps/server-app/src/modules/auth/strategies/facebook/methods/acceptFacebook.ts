@@ -16,7 +16,7 @@ export function acceptFacebook(container: Container) {
 
     const user: User = req.user as User;
 
-    const token: string = await this.tokenService.createToken(user);
+    const token: string = await this.tokenManager.createToken(user);
 
     const redirectURL: URL = new URL('/app/accept/facebook', AUTH_CONSTANTS.Strategies.Facebook.redirectURL);
 

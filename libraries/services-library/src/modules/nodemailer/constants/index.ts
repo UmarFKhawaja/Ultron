@@ -4,7 +4,7 @@ export const NODEMAILER_CONSTANTS = {
       ConnectionProvider: 'NODEMAILER_CONNECTION_PROVIDER'
     },
     Services: {
-      MailSenderService: 'NODEMAILER_MAIL_SENDER_SERVICE'
+      MailTransporter: 'NODEMAILER_MAIL_TRANSPORTER'
     }
   },
   Settings: {
