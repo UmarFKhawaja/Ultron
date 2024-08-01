@@ -2,32 +2,36 @@ import { DefineModuleFunction, SetupMiddlewareFunction, SetupRouterFunction } fr
 import { Express, Router } from 'express';
 import { Container } from 'inversify';
 import passport from 'passport';
-import { Strategy, StrategyOptions } from 'passport-google-oauth20';
+import { Strategy } from 'passport-google-oauth20';
 import { AUTH_CONSTANTS } from '../../constants';
 import { ProfileExtractor } from '../../contracts';
 import { authenticateGoogle, authorizeGoogle, authenticateJWT } from '../../methods';
-import { acceptGoogle, connectGoogle, disconnectGoogle, loginWithGoogle, verifyUser } from './methods';
+import {
+  acceptGoogle,
+  connectGoogle,
+  disconnectGoogle,
+  loginWithGoogle,
+  provideGoogleStrategy
+} from './methods';
 import { AuthGoogleProfileExtractor } from './services';
+import { StrategyProvider } from './types';
 
 export const defineGoogleModule: DefineModuleFunction = (container: Container): Container => {
   container.bind<ProfileExtractor>(AUTH_CONSTANTS.Symbols.Services.ProfileExtractor).to(AuthGoogleProfileExtractor)
-    .whenTargetNamed(AUTH_CONSTANTS.Names.Services.GoogleProfileExtractor);
+    .whenTargetNamed(AUTH_CONSTANTS.Names.Strategies.GoogleStrategy);
+
+  container.bind<StrategyProvider>(AUTH_CONSTANTS.Symbols.Services.GoogleStrategyProvider).toFactory(provideGoogleStrategy)
+    .whenTargetNamed(AUTH_CONSTANTS.Names.Strategies.GoogleStrategy);
 
   return container;
 };
 
 export const setupGoogleMiddleware: SetupMiddlewareFunction = (app: Express, container: Container): Express => {
-  const options: StrategyOptions = {
-    clientID: AUTH_CONSTANTS.Strategies.Google.clientID,
-    clientSecret: AUTH_CONSTANTS.Strategies.Google.clientSecret,
-    callbackURL: new URL(AUTH_CONSTANTS.Strategies.Google.acceptPath, AUTH_CONSTANTS.Strategies.Google.acceptURL).toString(),
-    scope: [
-      'email',
-      'profile'
-    ]
-  };
+  const provideStrategy: StrategyProvider = container.getNamed<StrategyProvider>(AUTH_CONSTANTS.Symbols.Services.GoogleStrategyProvider, AUTH_CONSTANTS.Names.Strategies.GoogleStrategy);
 
-  passport.use('google', new Strategy(options, verifyUser(container)));
+  const strategy: Strategy = provideStrategy();
+
+  passport.use('google', strategy);
 
   return app;
 };

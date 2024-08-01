@@ -42,6 +42,13 @@ import { defineMagicLoginModule, setupMagicLoginMiddleware, setupMagicLoginRoute
 import { definePasswordModule, setupPasswordMiddleware, setupPasswordRouter } from './strategies/password';
 
 export const defineAuthModule: DefineModuleFunction = (container: Container): Container => {
+  container.bind<CoreManager>(AUTH_CONSTANTS.Symbols.Services.CoreManager).to(AuthCoreManager).inRequestScope();
+  container.bind<JWTManager>(AUTH_CONSTANTS.Symbols.Services.JWTManager).to(AuthJWTManager).inRequestScope();
+  container.bind<TokenManager>(AUTH_CONSTANTS.Symbols.Services.TokenManager).to(AuthTokenManager).inRequestScope();
+  container.bind<URLFormatter>(AUTH_CONSTANTS.Symbols.Services.URLFormatter).to(AuthURLFormatter).inRequestScope();
+  container.bind<AuthUserManager>(AUTH_CONSTANTS.Symbols.Services.UserManager).to(AuthUserManager).inRequestScope();
+  container.bind<AuthVerificationRequestManager>(AUTH_CONSTANTS.Symbols.Services.VerificationRequestManager).to(AuthVerificationRequestManager).inRequestScope();
+
   container = populateContainer(
     container,
     definePasswordModule,
@@ -50,13 +57,6 @@ export const defineAuthModule: DefineModuleFunction = (container: Container): Co
     defineFacebookModule,
     defineGoogleModule
   );
-
-  container.bind<CoreManager>(AUTH_CONSTANTS.Symbols.Services.CoreManager).to(AuthCoreManager).inRequestScope();
-  container.bind<JWTManager>(AUTH_CONSTANTS.Symbols.Services.JWTManager).to(AuthJWTManager).inRequestScope();
-  container.bind<TokenManager>(AUTH_CONSTANTS.Symbols.Services.TokenManager).to(AuthTokenManager).inRequestScope();
-  container.bind<URLFormatter>(AUTH_CONSTANTS.Symbols.Services.URLFormatter).to(AuthURLFormatter).inRequestScope();
-  container.bind<AuthUserManager>(AUTH_CONSTANTS.Symbols.Services.UserManager).to(AuthUserManager).inRequestScope();
-  container.bind<AuthVerificationRequestManager>(AUTH_CONSTANTS.Symbols.Services.VerificationRequestManager).to(AuthVerificationRequestManager).inRequestScope();
 
   return container;
 };

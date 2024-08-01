@@ -4,13 +4,14 @@ import { Profile, VerifyFunction } from 'passport-facebook';
 import { AUTH_CONSTANTS } from '../../../constants';
 import { CoreManager, ProfileExtractor } from '../../../contracts';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type DoneFunction = (error: any, user?: any, info?: any) => void;
 
 export function verifyUser(container: Container): VerifyFunction {
   const coreManager: CoreManager = container.get<CoreManager>(AUTH_CONSTANTS.Symbols.Services.CoreManager);
   const profileExtractor: ProfileExtractor = container.getNamed<ProfileExtractor>(
     AUTH_CONSTANTS.Symbols.Services.ProfileExtractor,
-    AUTH_CONSTANTS.Names.Services.FacebookProfileExtractor
+    AUTH_CONSTANTS.Names.Strategies.FacebookStrategy
   );
 
   return async (accessToken: string, refreshToken: string, profile: Profile, done: DoneFunction): Promise<void> => {

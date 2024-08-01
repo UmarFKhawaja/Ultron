@@ -2,28 +2,33 @@ import { DefineModuleFunction, SetupMiddlewareFunction, SetupRouterFunction } fr
 import { Express, Router } from 'express';
 import { Container } from 'inversify';
 import passport from 'passport';
-import { IStrategyOptions, Strategy } from 'passport-local';
+import { Strategy } from 'passport-local';
+import { AUTH_CONSTANTS } from '../../constants';
 import { authenticatePassword, authenticateJWT } from '../../methods';
 import {
   changePassword,
   loginWithPassword,
+  providePasswordStrategy,
   recoverAccount,
   resetPassword,
   setPassword,
-  unsetPassword,
-  verifyUser
+  unsetPassword
 } from './methods';
+import { StrategyProvider } from './types';
 
 export const definePasswordModule: DefineModuleFunction = (container: Container): Container => {
+  container.bind<StrategyProvider>(AUTH_CONSTANTS.Symbols.Services.PasswordStrategyProvider).toFactory(providePasswordStrategy)
+    .whenTargetNamed(AUTH_CONSTANTS.Names.Strategies.PasswordStrategy);
+
   return container;
 };
 
 export const setupPasswordMiddleware: SetupMiddlewareFunction = (app: Express, container: Container): Express => {
-  const options: IStrategyOptions = {
-    session: true
-  };
+  const provideStrategy: StrategyProvider = container.getNamed<StrategyProvider>(AUTH_CONSTANTS.Symbols.Services.PasswordStrategyProvider, AUTH_CONSTANTS.Names.Strategies.PasswordStrategy);
 
-  passport.use('password', new Strategy(options, verifyUser(container)));
+  const strategy: Strategy = provideStrategy();
+
+  passport.use('password', strategy);
 
   return app;
 };

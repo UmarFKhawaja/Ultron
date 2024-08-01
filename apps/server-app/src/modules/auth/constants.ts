@@ -8,15 +8,21 @@ export const AUTH_CONSTANTS = {
       URLFormatter: Symbol.for('URLFormatter'),
       UserManager: Symbol.for('UserManager'),
       VerificationRequestManager: Symbol.for('VerificationRequestManager'),
-      MagicLoginStrategyProvider: Symbol.for('MagicLoginStrategyProvider')
+      FacebookStrategyProvider: Symbol.for('FacebookStrategyProvider'),
+      GoogleStrategyProvider: Symbol.for('GoogleStrategyProvider'),
+      JWTStrategyProvider: Symbol.for('JWTStrategyProvider'),
+      MagicLoginStrategyProvider: Symbol.for('MagicLoginStrategyProvider'),
+      PasswordStrategyProvider: Symbol.for('PasswordStrategyProvider')
     }
   },
   Names: {
-    Services: {
-      FacebookProfileExtractor: 'FacebookProfileExtractor',
-      GoogleProfileExtractor: 'GoogleProfileExtractor',
-      MagicLoginStrategyProvider: 'MagicLoginStrategyProvider'
-    },
+    Strategies: {
+      FacebookStrategy: Symbol.for('FacebookStrategy'),
+      GoogleStrategy: Symbol.for('GoogleStrategy'),
+      JWTStrategy: Symbol.for('JWTStrategy'),
+      MagicLoginStrategy: Symbol.for('MagicLoginStrategy'),
+      PasswordStrategy: Symbol.for('PasswordStrategy')
+    }
   },
   Settings: {
     Session: {

@@ -4,6 +4,7 @@ import { IVerifyOptions, VerifyFunction } from 'passport-local';
 import { AUTH_CONSTANTS } from '../../../constants';
 import { CoreManager } from '../../../contracts';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type DoneFunction = (error: any, user?: (Express.User | false), options?: IVerifyOptions) => void;
 
 export function verifyUser(container: Container): VerifyFunction {
