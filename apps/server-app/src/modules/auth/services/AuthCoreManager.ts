@@ -12,9 +12,7 @@ import { CERBOS_CONSTANTS, REDIS_CONSTANTS } from '@ultron/data-library';
 import { compareSync } from 'bcryptjs';
 import { inject, injectable } from 'inversify';
 import { AUTH_CONSTANTS } from '../constants';
-import { CoreManager, TokenManager, URLFormatter } from '../contracts';
-import { AuthUserManager } from './AuthUserManager';
-import { AuthVerificationRequestManager } from './AuthVerificationRequestManager';
+import { CoreManager, TokenManager, URLFormatter, UserManager, VerificationRequestManager } from '../contracts';
 
 @injectable()
 export class AuthCoreManager implements CoreManager {
@@ -28,9 +26,9 @@ export class AuthCoreManager implements CoreManager {
     @inject(AUTH_CONSTANTS.Symbols.Services.URLFormatter)
     private readonly urlFormatter: URLFormatter,
     @inject(AUTH_CONSTANTS.Symbols.Services.UserManager)
-    private readonly userManager: AuthUserManager,
+    private readonly userManager: UserManager,
     @inject(AUTH_CONSTANTS.Symbols.Services.VerificationRequestManager)
-    private readonly verificationRequestManager: AuthVerificationRequestManager
+    private readonly verificationRequestManager: VerificationRequestManager
   ) {
   }
 

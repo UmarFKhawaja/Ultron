@@ -11,7 +11,14 @@ import session from 'express-session';
 import { Container } from 'inversify';
 import passport from 'passport';
 import { AUTH_CONSTANTS } from './constants';
-import { CoreManager, JWTManager, TokenManager, URLFormatter } from './contracts';
+import {
+  CoreManager,
+  JWTManager,
+  TokenManager,
+  URLFormatter,
+  UserManager,
+  VerificationRequestManager
+} from './contracts';
 import {
   activateAccount,
   authenticateJWT,
@@ -46,8 +53,8 @@ export const defineAuthModule: DefineModuleFunction = (container: Container): Co
   container.bind<JWTManager>(AUTH_CONSTANTS.Symbols.Services.JWTManager).to(AuthJWTManager).inRequestScope();
   container.bind<TokenManager>(AUTH_CONSTANTS.Symbols.Services.TokenManager).to(AuthTokenManager).inRequestScope();
   container.bind<URLFormatter>(AUTH_CONSTANTS.Symbols.Services.URLFormatter).to(AuthURLFormatter).inRequestScope();
-  container.bind<AuthUserManager>(AUTH_CONSTANTS.Symbols.Services.UserManager).to(AuthUserManager).inRequestScope();
-  container.bind<AuthVerificationRequestManager>(AUTH_CONSTANTS.Symbols.Services.VerificationRequestManager).to(AuthVerificationRequestManager).inRequestScope();
+  container.bind<UserManager>(AUTH_CONSTANTS.Symbols.Services.UserManager).to(AuthUserManager).inRequestScope();
+  container.bind<VerificationRequestManager>(AUTH_CONSTANTS.Symbols.Services.VerificationRequestManager).to(AuthVerificationRequestManager).inRequestScope();
 
   container = populateContainer(
     container,

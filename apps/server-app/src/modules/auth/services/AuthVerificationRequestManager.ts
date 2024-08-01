@@ -7,9 +7,10 @@ import {
 } from '@ultron/core-library';
 import { MYSQL_CONSTANTS } from '@ultron/data-library';
 import { inject, injectable } from 'inversify';
+import { VerificationRequestManager } from '../contracts';
 
 @injectable()
-export class AuthVerificationRequestManager {
+export class AuthVerificationRequestManager implements VerificationRequestManager {
   constructor(
     @inject(MYSQL_CONSTANTS.Symbols.Services.VerificationRequestHelper)
     private readonly verificationRequestHelper: VerificationRequestHelper
@@ -80,7 +81,7 @@ export class AuthVerificationRequestManager {
     return await this.verificationRequestHelper.findVerificationRequestsByUserIDAndPurpose(user.id, purpose);
   }
 
-  private async updateVerificationRequest(user: User, code: string, status: VerificationRequestStatus): Promise<VerificationRequest> {
+  async updateVerificationRequest(user: User, code: string, status: VerificationRequestStatus): Promise<VerificationRequest> {
     let verificationRequest: VerificationRequest | null = await this.verificationRequestHelper.findVerificationRequestByCode(code);
 
     if (!verificationRequest) {

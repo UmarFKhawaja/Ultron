@@ -2,9 +2,10 @@ import { ProviderType, User, UserHelper } from '@ultron/core-library';
 import { MYSQL_CONSTANTS } from '@ultron/data-library';
 import { compareSync, hashSync } from 'bcryptjs';
 import { inject, injectable } from 'inversify';
+import { UserManager } from '../contracts';
 
 @injectable()
-export class AuthUserManager {
+export class AuthUserManager implements UserManager {
   constructor(
     @inject(MYSQL_CONSTANTS.Symbols.Services.UserHelper)
     private readonly userHelper: UserHelper
