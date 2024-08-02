@@ -1,12 +1,12 @@
 import { CheckResourceRequest, CheckResourcesResult, Principal, Resource } from '@cerbos/core';
 import { GRPC as GRPCConnection } from '@cerbos/grpc';
+import { EMPTY_UUID } from '@ultron/common-library';
 import {
   AccessAction,
   AccessResourceKind,
   AccessRole,
   AccessChecker,
   Account,
-  EMPTY_UUID,
   User,
   VerificationRequest
 } from '@ultron/core-library';
