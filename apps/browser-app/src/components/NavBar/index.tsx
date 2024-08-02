@@ -1,3 +1,4 @@
+import { useCallback, useState } from 'react';
 import { useTheme } from '../../providers';
 import { Button } from '../Button';
 import { Buttons } from '../Buttons';
@@ -10,13 +11,17 @@ import { StyledNav } from './styles';
 export function NavBar({ ...props }: NavBarProps) {
   const { theme, toggleTheme } = useTheme();
 
+  const [active, setActive] = useState<boolean>(false);
+
+  const toggleActive = useCallback(() => setActive((active: boolean) => !active), [setActive]);
+
   return (
     <StyledNav theme={theme} {...props}>
       <NavBarBrand href="https://bulma.io">
         <NavBarBrand.Logo/>
-        <NavBarBrand.Burger target="navbar-menu"/>
+        <NavBarBrand.Burger target="navbar-menu" active={active} onClick={toggleActive}/>
       </NavBarBrand>
-      <NavBarMenu id="navbar-menu">
+      <NavBarMenu id="navbar-menu" active={active}>
         <NavBarMenu.End>
           <NavBarMenu.End.Item>
             <Buttons>

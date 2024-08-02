@@ -3,14 +3,18 @@ import { Container, Footer, Hero, Level, Media, NavBar, Section } from '../compo
 export function App() {
   return (
     <>
-      <NavBar/>
+      <NavBar variant="fixed-top"/>
       <Hero withNavBar>
-        <Hero.Body>
+        <Hero.Head>
           <Section>
-            <Container>
+            <Container fluid>
               Hello World!
             </Container>
-            <Container>
+          </Section>
+        </Hero.Head>
+        <Hero.Body>
+          <Section>
+            <Container fluid>
               <Media>
                 <Media.Left>
                   <p>Foo</p>
