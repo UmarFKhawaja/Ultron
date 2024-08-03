@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import styled from 'styled-components';
-import { Theme } from '../../../../../../types';
+import { Theme } from '../../../../types';
 
 interface StyledAnchorProps {
   theme: Theme;

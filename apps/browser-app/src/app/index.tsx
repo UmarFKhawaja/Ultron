@@ -1,9 +1,10 @@
-import { Container, Footer, Hero, Level, Media, NavBar, Section } from '../components';
+import { BottomBar, TopBar } from '../assets';
+import { Container, Hero, Media, Section } from '../components';
 
 export function App() {
   return (
     <>
-      <NavBar variant="fixed-top"/>
+      <TopBar/>
       <Hero withNavBar>
         <Hero.Head>
           <Section>
@@ -43,22 +44,7 @@ export function App() {
           </Section>
         </Hero.Body>
         <Hero.Foot>
-          <Footer>
-            <Container>
-              <Level>
-                <Level.Left>
-                  <Level.Item>Foo</Level.Item>
-                  <Level.Item>Bar</Level.Item>
-                  <Level.Item>Baz</Level.Item>
-                </Level.Left>
-                <Level.Right>
-                  <Level.Item>Yes</Level.Item>
-                  <Level.Item>No</Level.Item>
-                  <Level.Item>Maybe</Level.Item>
-                </Level.Right>
-              </Level>
-            </Container>
-          </Footer>
+          <BottomBar/>
         </Hero.Foot>
       </Hero>
     </>

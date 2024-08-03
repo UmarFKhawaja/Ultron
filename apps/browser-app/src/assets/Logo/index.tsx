@@ -1,10 +1,7 @@
 import { FC } from 'react';
-import { useTheme } from '../../../../../../providers';
-import { NavBarLogoProps } from './props';
+import { LogoProps } from './props';
 
-export const NavBarLogo: FC<NavBarLogoProps> = ({ ...props }: NavBarLogoProps) => {
-  const { theme } = useTheme();
-
+export const Logo: FC<LogoProps> = ({ theme, ...props }: LogoProps) => {
   return (
     <svg width="640" height="160" viewBox="0 0 640 160" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path

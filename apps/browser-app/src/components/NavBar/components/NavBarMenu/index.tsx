@@ -1,19 +1,24 @@
 import { FC } from 'react';
-import { NavBarEnd, NavBarStart } from './components';
+import { useNavBarState } from '../../providers';
+import { NavBarMenuEnd, NavBarMenuStart } from './components';
 import { NavBarMenuProps } from './props';
 import { StyledDiv } from './styles';
 
 interface NavBarMenuSubcomponents {
-  Start: typeof NavBarStart;
-  End: typeof NavBarEnd;
+  Start: typeof NavBarMenuStart;
+  End: typeof NavBarMenuEnd;
 }
 
-export const NavBarMenu: FC<NavBarMenuProps> & NavBarMenuSubcomponents = ({ children, ...props }: NavBarMenuProps) => (
-  <StyledDiv {...props}>
-    {children}
-  </StyledDiv>
-);
+export const NavBarMenu: FC<NavBarMenuProps> & NavBarMenuSubcomponents = ({ children, ...props }: NavBarMenuProps) => {
+  const { active } = useNavBarState();
 
-NavBarMenu.Start = NavBarStart;
+  return (
+    <StyledDiv {...{ ...props, active }}>
+      {children}
+    </StyledDiv>
+  );
+};
 
-NavBarMenu.End = NavBarEnd;
+NavBarMenu.Start = NavBarMenuStart;
+
+NavBarMenu.End = NavBarMenuEnd;

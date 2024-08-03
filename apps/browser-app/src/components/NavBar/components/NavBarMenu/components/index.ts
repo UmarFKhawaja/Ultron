@@ -1,2 +1,2 @@
-export * from './NavBarEnd';
-export * from './NavBarStart';
+export * from './NavBarMenuEnd';
+export * from './NavBarMenuStart';

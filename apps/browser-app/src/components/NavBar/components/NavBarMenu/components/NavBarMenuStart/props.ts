@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
 
-export interface NavBarStartProps extends PropsWithChildren {
+export interface NavBarMenuStartProps extends PropsWithChildren {
   className?: string;
 }
